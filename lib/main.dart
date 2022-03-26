@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_ui/modules/login/login_page.dart';
-import 'package:login_ui/shared/style/colors.dart';
+
+import 'shared/style/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Login UI',
-      theme: ThemeData(
-        primaryColor: defaultColor,
-      ),
+      theme: themeData,
       home: const LoginPage(),
     );
   }

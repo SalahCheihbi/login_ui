@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_ui/modules/register/register_step1.dart';
 import 'package:login_ui/shared/component/component.dart';
 import 'package:login_ui/shared/style/colors.dart';
 
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   FocusNode _focusNode = FocusNode();
+  @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
@@ -175,7 +177,13 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           const Text("Don't have an account? "),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RegisterScreen()));
+                            },
                             child: const Text(
                               'Sign Up',
                               style: TextStyle(
