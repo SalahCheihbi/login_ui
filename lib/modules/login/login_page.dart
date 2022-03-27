@@ -11,23 +11,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  FocusNode _focusNode = FocusNode();
+  late FocusNode _focusNode;
+  late FocusNode _focusNode2;
+
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
+    _focusNode2 = FocusNode();
   }
 
   @override
   void dispose() {
     _focusNode.dispose();
+    _focusNode2.dispose();
     super.dispose();
-  }
-
-  void _requestFocus() {
-    setState(() {
-      FocusScope.of(context).requestFocus(_focusNode);
-    });
   }
 
   @override
@@ -51,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.only(top: 60),
+                        padding: EdgeInsets.only(top: 90),
                         child: Text(
                           'UDAC',
                           style: TextStyle(
@@ -68,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.only(top: 15),
                         child: Container(
                           width: 320,
-                          height: 450,
+                          height: MediaQuery.of(context).size.height / 2,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: Colors.white,
@@ -131,10 +129,16 @@ class _LoginPageState extends State<LoginPage> {
                                   right: 20,
                                 ),
                                 child: defaultFromField(
-                                    autofocus: false,
-                                    type: TextInputType.name,
-                                    prefix: Icons.person_outline_outlined,
-                                    label: 'User Name'),
+                                  function: _requestFocus,
+                                  focusNode: _focusNode,
+                                  autofocus: true,
+                                  colors: _focusNode.hasFocus
+                                      ? defaultColor
+                                      : Colors.grey,
+                                  type: TextInputType.name,
+                                  prefix: Icons.person_outline_outlined,
+                                  label: 'User Name',
+                                ),
                               ),
                               const SizedBox(height: 10),
                               Padding(
@@ -143,13 +147,13 @@ class _LoginPageState extends State<LoginPage> {
                                   right: 20,
                                 ),
                                 child: defaultFromField(
-                                    function: _requestFocus,
-                                    focusNode: _focusNode,
-                                    autofocus: false,
-                                    colors: _focusNode.hasFocus
+                                    function: _requestFocus2,
+                                    focusNode: _focusNode2,
+                                    autofocus: true,
+                                    colors: _focusNode2.hasFocus
                                         ? defaultColor
                                         : Colors.grey,
-                                    type: TextInputType.name,
+                                    type: TextInputType.text,
                                     prefix: Icons.lock_open,
                                     isPassword: true,
                                     label: 'Password'),
@@ -202,5 +206,17 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _requestFocus() {
+    setState(() {
+      FocusScope.of(context).requestFocus(_focusNode);
+    });
+  }
+
+  void _requestFocus2() {
+    setState(() {
+      FocusScope.of(context).requestFocus(_focusNode2);
+    });
   }
 }
