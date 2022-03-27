@@ -10,5 +10,10 @@ ThemeData themeData = ThemeData(
     iconTheme: const IconThemeData(color: Colors.black),
     color: HexColor("#F9F9F9"),
     elevation: 0.0,
+    titleTextStyle: const TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
+    ),
   ),
 );

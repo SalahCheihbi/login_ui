@@ -70,16 +70,9 @@ packages:
     source: hosted
     version: "1.0.4"
   flutter_svg:
-    dependency: transitive
-    description:
-      name: flutter_svg
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
-  flutter_svg_provider:
     dependency: "direct main"
     description:
-      name: flutter_svg_provider
+      name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
@@ -100,20 +93,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.6"
-  http:
-    dependency: transitive
-    description:
-      name: http
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.13.4"
-  http_parser:
-    dependency: transitive
-    description:
-      name: http_parser
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0"
   js:
     dependency: transitive
     description:

@@ -92,3 +92,17 @@ Widget defaultButton({
         ),
       ),
     );
+
+Widget defaultInputForm() => SizedBox(
+      height: 40,
+      child: TextFormField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          contentPadding: const EdgeInsets.all(
+            10,
+          ),
+        ),
+      ),
+    );
