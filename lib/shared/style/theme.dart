@@ -4,6 +4,9 @@ import 'package:hexcolor/hexcolor.dart';
 import 'colors.dart';
 
 ThemeData themeData = ThemeData(
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    primary: HexColor("#f1767f"),
+  ),
   fontFamily: 'NeueHaasDisplay',
   primaryColor: defaultColor,
   appBarTheme: AppBarTheme(

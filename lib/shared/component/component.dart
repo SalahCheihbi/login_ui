@@ -94,11 +94,15 @@ Widget defaultButton({
     );
 
 Widget defaultInputForm({
+  FocusNode? focusNode,
   required TextInputType type,
+  bool autofocus = false,
 }) =>
     SizedBox(
       height: 40,
       child: TextFormField(
+        autofocus: autofocus,
+        focusNode: focusNode,
         keyboardType: type,
         decoration: InputDecoration(
           border: OutlineInputBorder(

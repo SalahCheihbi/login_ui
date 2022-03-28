@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: defaultFromField(
                                   function: _requestFocus,
                                   focusNode: _focusNode,
-                                  autofocus: true,
+                                  autofocus: false,
                                   colors: _focusNode.hasFocus
                                       ? defaultColor
                                       : Colors.grey,
@@ -147,16 +147,17 @@ class _LoginPageState extends State<LoginPage> {
                                   right: 20,
                                 ),
                                 child: defaultFromField(
-                                    function: _requestFocus2,
-                                    focusNode: _focusNode2,
-                                    autofocus: true,
-                                    colors: _focusNode2.hasFocus
-                                        ? defaultColor
-                                        : Colors.grey,
-                                    type: TextInputType.text,
-                                    prefix: Icons.lock_open,
-                                    isPassword: true,
-                                    label: 'Password'),
+                                  function: _requestFocus2,
+                                  focusNode: _focusNode2,
+                                  autofocus: false,
+                                  colors: _focusNode2.hasFocus
+                                      ? defaultColor
+                                      : Colors.grey,
+                                  type: TextInputType.text,
+                                  prefix: Icons.lock_open,
+                                  isPassword: true,
+                                  label: 'Password',
+                                ),
                               ),
                               const SizedBox(
                                 height: 30,

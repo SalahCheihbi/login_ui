@@ -1,3 +1,3 @@
 import 'package:hexcolor/hexcolor.dart';
 
-HexColor defaultColor = HexColor("#026fe2");
+HexColor defaultColor = HexColor("#f1606b");

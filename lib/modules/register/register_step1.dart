@@ -14,7 +14,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _isActive = true;
-  String propertyType = '';
+  String propertyType = 'Commercial';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
