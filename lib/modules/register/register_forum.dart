@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:flutter/material.dart';
 import 'package:login_ui/shared/component/component.dart';
 import 'package:login_ui/shared/style/colors.dart';
@@ -12,8 +14,9 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final item = ['test1', 'test2', 'test3', 'test4'];
-
+  final item2 = ['Rabat', 'Casablanca', 'Marrakesh', 'Tanger'];
   String? value;
+  String? value2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,37 +41,48 @@ class _RegisterFormState extends State<RegisterForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Name'),
+              const Text(
+                'Name of Owner',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               const SizedBox(height: 10),
-              defaultInputForm(),
+              defaultInputForm(
+                type: TextInputType.text,
+              ),
               const SizedBox(height: 10),
               RichText(
                   text: const TextSpan(
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 14,
                         color: Colors.black,
+                        fontWeight: FontWeight.w700,
                       ),
                       children: [
-                    TextSpan(text: 'Enter your Address'),
+                    TextSpan(text: 'Enter Address'),
                     TextSpan(text: '*', style: TextStyle(color: Colors.red)),
                   ])),
               const SizedBox(height: 10),
-              defaultInputForm(),
+              defaultInputForm(type: TextInputType.streetAddress),
               const SizedBox(
                 height: 10,
               ),
               RichText(
                   text: const TextSpan(
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 14,
                         color: Colors.black,
+                        fontWeight: FontWeight.w700,
                       ),
                       children: [
-                    TextSpan(text: 'Enter your Address'),
+                    TextSpan(text: 'House Number'),
                     TextSpan(text: '*', style: TextStyle(color: Colors.red)),
                   ])),
               const SizedBox(height: 10),
-              defaultInputForm(),
+              defaultInputForm(type: TextInputType.number),
               const SizedBox(height: 10),
               Row(
                 children: [
@@ -76,11 +90,18 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('ssssss'),
+                        const Text(
+                          'Street',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultInputForm(),
+                        defaultInputForm(type: TextInputType.text),
                       ],
                     ),
                   ),
@@ -91,11 +112,18 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('ssssss'),
+                        const Text(
+                          'Locality',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
-                        defaultInputForm(),
+                        defaultInputForm(type: TextInputType.text),
                       ],
                     ),
                   )
@@ -108,7 +136,49 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('ssssss'),
+                        const Text(
+                          'City',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: DropdownButtonFormField<String>(
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.all(10),
+                            ),
+                            value: value2,
+                            items: item2.map(buildCityItem).toList(),
+                            onChanged: (value) => setState(() {
+                              this.value2 = value;
+                            }),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'State',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -128,34 +198,6 @@ class _RegisterFormState extends State<RegisterForm> {
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('ssssss'),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.all(10),
-                            ),
-                            value: value,
-                            items: item.map(buildMenuItem).toList(),
-                            onChanged: (value) => setState(() {
-                              this.value = value;
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
                   )
                 ],
               ),
@@ -166,9 +208,14 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Name'),
+                        const Text('District',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                            )),
                         const SizedBox(height: 10),
-                        defaultInputForm(),
+                        defaultInputForm(type: TextInputType.name),
                       ],
                     ),
                   ),
@@ -179,9 +226,18 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Name'),
+                        const Text(
+                          'Pincode',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         const SizedBox(height: 10),
-                        defaultInputForm(),
+                        defaultInputForm(
+                          type: TextInputType.number,
+                        ),
                       ],
                     ),
                   )
@@ -233,6 +289,13 @@ class _RegisterFormState extends State<RegisterForm> {
     return DropdownMenuItem<String>(
       value: item,
       child: Text(item),
+    );
+  }
+
+  DropdownMenuItem<String> buildCityItem(String item2) {
+    return DropdownMenuItem<String>(
+      value: item2,
+      child: Text(item2),
     );
   }
 }

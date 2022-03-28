@@ -93,9 +93,13 @@ Widget defaultButton({
       ),
     );
 
-Widget defaultInputForm() => SizedBox(
+Widget defaultInputForm({
+  required TextInputType type,
+}) =>
+    SizedBox(
       height: 40,
       child: TextFormField(
+        keyboardType: type,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),

@@ -14,6 +14,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _isActive = true;
+  String propertyType = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +76,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       setState(() {
                         _isActive = true;
                       });
+                      propertyType = 'Commercial';
+                      print(propertyType);
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.4,
@@ -114,6 +117,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       setState(() {
                         _isActive = false;
                       });
+                      propertyType = 'Residential';
+                      print(propertyType);
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.4,

@@ -179,7 +179,12 @@ class _LoginPageState extends State<LoginPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don't have an account? "),
+                          const Text(
+                            "Don't have an account? ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                color: Colors.black38),
+                          ),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -192,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                               'Sign Up',
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w600),
                             ),
                           )
                         ],
