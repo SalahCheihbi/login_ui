@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:login_ui/modules/register/register_step1.dart';
 import 'package:login_ui/shared/component/component.dart';
@@ -79,32 +80,37 @@ class _LoginPageState extends State<LoginPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(children: [
-                              const SizedBox(
-                                height: 40,
+                              SizedBox(
+                                height: 10.0,
                               ),
-                              const Text(
-                                'Property tax Server',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Unique Door No. Easily Your Entire Property Tax Using App',
+                              FadeInRight(
+                                child: const Text(
+                                  'Property tax Server',
                                   style: TextStyle(
-                                    color: Colors.black38,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w800,
                                   ),
                                 ),
                               ),
                               const SizedBox(
-                                height: 30,
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: FadeInLeft(
+                                  delay: Duration(milliseconds: 6000),
+                                  child: const Text(
+                                    'Unique Door No. Easily Your Entire Property Tax Using App',
+                                    style: TextStyle(
+                                      color: Colors.black38,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
                               ),
                               const Padding(
                                 padding: EdgeInsets.only(left: 20),
@@ -121,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 25,
+                                height: 15,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -160,15 +166,18 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 30,
+                                height: 10,
                               ),
                               Padding(
                                 padding:
                                     const EdgeInsets.only(left: 20, right: 20),
-                                child: defaultButton(
-                                    text: 'Sign In Now',
-                                    background: defaultColor,
-                                    function: () {}),
+                                child: FadeInUp(
+                                  duration: Duration(milliseconds: 500),
+                                  child: defaultButton(
+                                      text: 'Sign In Now',
+                                      background: defaultColor,
+                                      function: () {}),
+                                ),
                               )
                             ]),
                           ),

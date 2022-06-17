@@ -13,8 +13,10 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final _formKey = GlobalKey<FormState>();
   final item = ['test1', 'test2', 'test3', 'test4'];
   final item2 = ['Rabat', 'Casablanca', 'Marrakesh', 'Tanger'];
+  var addressController = TextEditingController();
   String? value;
   String? value2;
   @override
@@ -38,247 +40,264 @@ class _RegisterFormState extends State<RegisterForm> {
         physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Name of Owner',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Name of Owner',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              defaultInputForm(
-                type: TextInputType.text,
-              ),
-              const SizedBox(height: 10),
-              RichText(
-                  text: const TextSpan(
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      children: [
-                    TextSpan(text: 'Enter Address'),
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red)),
-                  ])),
-              const SizedBox(height: 10),
-              defaultInputForm(type: TextInputType.streetAddress),
-              const SizedBox(
-                height: 10,
-              ),
-              RichText(
-                  text: const TextSpan(
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      children: [
-                    TextSpan(text: 'House Number'),
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red)),
-                  ])),
-              const SizedBox(height: 10),
-              defaultInputForm(type: TextInputType.number),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Street',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          ),
+                const SizedBox(height: 10),
+                defaultInputForm(
+                  type: TextInputType.text,
+                ),
+                const SizedBox(height: 10),
+                RichText(
+                    text: const TextSpan(
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
                         ),
-                        const SizedBox(
-                          height: 10,
+                        children: [
+                      TextSpan(text: 'Enter Address'),
+                      TextSpan(text: '*', style: TextStyle(color: Colors.red)),
+                    ])),
+                const SizedBox(height: 10),
+                defaultInputForm(
+                    controller: addressController,
+                    type: TextInputType.streetAddress,
+                    validate: (value) {
+                      if (value!.isEmpty) {
+                        const SizedBox(height: 20);
+                        return 'Please enter your address';
+                      }
+                      return null;
+                    }),
+                const SizedBox(
+                  height: 10,
+                ),
+                RichText(
+                    text: const TextSpan(
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
                         ),
-                        defaultInputForm(type: TextInputType.text),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Locality',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        defaultInputForm(type: TextInputType.text),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'City',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.all(10),
-                            ),
-                            value: value2,
-                            items: item2.map(buildCityItem).toList(),
-                            onChanged: (value) => setState(() {
-                              this.value2 = value;
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'State',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.all(10),
-                            ),
-                            value: value,
-                            items: item.map(buildMenuItem).toList(),
-                            onChanged: (value) => setState(() {
-                              this.value = value;
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('District',
+                        children: [
+                      TextSpan(text: 'House Number'),
+                      TextSpan(text: '*', style: TextStyle(color: Colors.red)),
+                    ])),
+                const SizedBox(height: 10),
+                defaultInputForm(type: TextInputType.number),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Street',
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                            )),
-                        const SizedBox(height: 10),
-                        defaultInputForm(type: TextInputType.name),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Pincode',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        defaultInputForm(
-                          type: TextInputType.number,
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          defaultInputForm(type: TextInputType.text),
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.25,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
-                child: defaultButton(
-                  background: defaultColor,
-                  width: double.infinity,
-                  text: 'Next Step',
-                  function: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                                child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: Lottie.asset('assets/84332-check.json',
-                                      repeat: false, height: 120, width: 100),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SimpleDialogOption(
-                                    onPressed: () {
-                                      Navigator.pop(context, 'Accepted');
-                                    },
-                                    child: const Text('Accepted'),
-                                  ),
-                                ),
-                              ],
-                            )));
-                  },
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Locality',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          defaultInputForm(type: TextInputType.text),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'City',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 40,
+                            child: DropdownButtonFormField<String>(
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                contentPadding: EdgeInsets.all(10),
+                              ),
+                              value: value2,
+                              items: item2.map(buildCityItem).toList(),
+                              onChanged: (value) => setState(() {
+                                this.value2 = value;
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'State',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 40,
+                            child: DropdownButtonFormField<String>(
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                contentPadding: EdgeInsets.all(10),
+                              ),
+                              value: value,
+                              items: item.map(buildMenuItem).toList(),
+                              onChanged: (value) => setState(() {
+                                this.value = value;
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('District',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                              )),
+                          const SizedBox(height: 10),
+                          defaultInputForm(type: TextInputType.name),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Pincode',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          defaultInputForm(
+                            type: TextInputType.number,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  child: defaultButton(
+                    background: defaultColor,
+                    width: double.infinity,
+                    text: 'Next Step',
+                    function: () {
+                      if (_formKey.currentState!.validate()) {
+                        showDialog(
+                            context: context,
+                            builder: (context) => Dialog(
+                                    child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 20),
+                                      child: Lottie.asset(
+                                          'assets/84332-check.json',
+                                          repeat: false,
+                                          height: 120,
+                                          width: 100),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SimpleDialogOption(
+                                        onPressed: () {
+                                          Navigator.pop(context, 'Accepted');
+                                        },
+                                        child: const Text('Accepted'),
+                                      ),
+                                    ),
+                                  ],
+                                )));
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

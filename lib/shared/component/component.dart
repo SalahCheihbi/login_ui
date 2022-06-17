@@ -94,23 +94,20 @@ Widget defaultButton({
     );
 
 Widget defaultInputForm({
-  FocusNode? focusNode,
   required TextInputType type,
-  bool autofocus = false,
+  TextEditingController? controller,
+  String? Function(String?)? validate,
 }) =>
-    SizedBox(
-      height: 40,
-      child: TextFormField(
-        autofocus: autofocus,
-        focusNode: focusNode,
-        keyboardType: type,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          contentPadding: const EdgeInsets.all(
-            10,
-          ),
+    TextFormField(
+      controller: controller,
+      validator: validate,
+      keyboardType: type,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          gapPadding: 10.0,
+          borderRadius: BorderRadius.circular(5),
         ),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       ),
     );
